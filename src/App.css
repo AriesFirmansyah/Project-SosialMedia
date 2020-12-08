@@ -1,0 +1,32 @@
+.cont {
+  background-color: aliceblue;
+  height: auto;
+  padding-bottom: 12px;
+}
+.contSwitch {
+  background: #232323;
+  background-size: cover;
+  height: auto;
+  padding-bottom: 12px;
+  color: aliceblue;
+}
+.bodySwitch {
+  background: #232323;
+}
+.textRight {
+  text-align: right;
+}
+.inline {
+  display: inline-block;
+}
+.navigasi:hover {
+  transform: scale(1.2);
+  transition: 0.5s;
+}
+.logo {
+  width: 50px;
+  height: 40px;
+  border-radius: 10px;
+  margin-bottom: -10px;
+  margin-right: 10px;
+}
