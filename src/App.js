@@ -9,6 +9,7 @@ import $ from "jquery";
 import Beranda from "./components/Beranda";
 import UserList from "./components/UserList"
 import AboutUs from "./components/AboutUs";
+import UserProfile from "./components/UserProfile";
 
 import { Button, makeStyles, Container, Grid, Switch, FormControlLabel, Link, } from "@material-ui/core";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
@@ -74,9 +75,11 @@ function App() {
           </Grid>
         </Grid>
         <Router>
+          <Beranda path="/"></Beranda>
           <Beranda path="/beranda"></Beranda>
           <UserList path="/userlist"></UserList>
-          <AboutUs path="/aboutus"></AboutUs>
+          <AboutUs path="/aboutus/"></AboutUs>
+          <UserProfile path="/userprofile/:id"></UserProfile>
         </Router>
       </Container>
     </div>
