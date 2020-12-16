@@ -11,15 +11,16 @@ import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import axios from "axios";
 import { ChangeHistorySharp, LocationSearchingTwoTone } from "@material-ui/icons";
 import { Link } from "@material-ui/core";
+import APP_ID from "./key"
 
 const BASE_URL = 'https://dummyapi.io/data/api';
-const APP_ID = '5fccd96ccecb8c26dadde5b8';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "250px",
+    width: 250,
     marginTop: 40,
-    height: "auto",
+    height: 460, //460
+    borderRadius: 25
   },
   img: {
     height: "auto",
@@ -37,6 +38,13 @@ const useStyles = makeStyles((theme) => ({
   },
   tags: {
     fontSize: 12,
+  },
+  display: {
+    display: "inline-block", 
+    margin: 10, 
+    marginBottom: -38, 
+    marginLeft: 0,
+    align: "center"
   }
 
 }));
@@ -47,7 +55,7 @@ export default class Beranda extends Component {
   }
   constructor() {
     super()
-    axios.get(`${BASE_URL}/post`, { headers: { 'app-id': APP_ID } })
+    axios.get(`${BASE_URL}/post`, { headers: { 'app-id': APP_ID  } })
       .then(res => {
         this.setState({ data: res.data.data })
         console.log(this.state.data)
@@ -56,7 +64,7 @@ export default class Beranda extends Component {
   }
   render() {
     return (
-      <div style={{ marginLeft: "auto", textAlign: "center" }}>
+      <div style={{ margin: "auto", textAlign: "center" }}>
         {this.state.data.map(display =>
           <Display key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
             gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
@@ -68,7 +76,7 @@ export default class Beranda extends Component {
 function Display(props) {
   const classes = useStyles();
   return (
-    <div style={{ display: "inline-block", margin: 22, align: "center" }}>
+    <div className={classes.display}>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Card className={classes.root}>
@@ -97,16 +105,14 @@ function Display(props) {
                 <FavoriteIcon color="secondary" />
                 <p style={{ fontSize: 13 }}> {props.like} Likes </p>
               </IconButton>
-              <IconButton> <ModeCommentIcon /> </IconButton>
-              {/* <IconButton><Link href={
-                {
-                  pathname: `/userprofile/${props.idUser}`,
-                  state: {
-                    id: props.idUser
-                  }
-                }
-              }> <AccountBoxIcon /> </Link></IconButton> */}
-              <IconButton><Link href={`userprofile/${props.idUser}`}> <AccountBoxIcon /> </Link></IconButton>
+              <IconButton style={{marginTop: 3}}> 
+                  <ModeCommentIcon /> 
+              </IconButton>
+              <IconButton style={{marginTop: 6}}>
+                  <Link href={`userprofile/${props.idUser}`}> 
+                    <AccountBoxIcon /> 
+                  </Link>
+              </IconButton>
             </CardActions>
           </Card>
         </Grid>
@@ -118,7 +124,7 @@ function Display(props) {
 function Tags(props) {
   const classes = useStyles();
   return (
-    <Button style={{ padding: 0 }} className={classes.tags} size="small" variant="text" color="primary">
+    <Button style={{ padding: 0, fontSize: 12, textTransform: "lowercase" }} className={classes.tags} size="small" variant="text" color="primary">
       {"#" + props.tes1}
     </Button>
   )

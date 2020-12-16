@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-
-// import Display from "./Display";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -12,21 +9,19 @@ import Typography from "@material-ui/core/Typography";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
-
-import { CardHeader, Avatar, Container } from "@material-ui/core";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import { CardHeader } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ModeCommentIcon from "@material-ui/icons/ModeComment";
-
+import APP_ID from "./key"
 
 const BASE_URL = "https://dummyapi.io/data/api";
-const APP_ID = "5fccd96ccecb8c26dadde5b8";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        marginTop: 15
     },
     paper: {
         padding: theme.spacing(2),
@@ -131,14 +126,14 @@ function UserDetail(props) {
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={5}>
                         <ButtonBase className={classes.image}>
-                            <img className={classes.img} alt="complex" src={props.data.picture} />
+                            <img className={classes.img} alt="Loading. ." src={props.data.picture} />
                         </ButtonBase>
                     </Grid>
                     <Grid item xs={12} sm={7} container>
                         <Grid item xs container direction="column">
                             <Grid item xs>
                                 <Typography variant="body2" color="textSecondary">
-                                    {props.data.id}
+                                    <p alt="loading . .">{props.data.id}</p>
                                 </Typography>
                                 <Typography gutterBottom variant="subtitle1">
                                     <strong>{props.data.title + ". " + props.data.firstName + " " + props.data.lastName}</strong>
@@ -197,15 +192,6 @@ function Display(props) {
                                 <p style={{ fontSize: 13 }}> {props.like} Likes </p>
                             </IconButton>
                             <IconButton> <ModeCommentIcon /> </IconButton>
-                            {/* <IconButton><Link href={
-                  {
-                    pathname: `/userprofile/${props.idUser}`,
-                    state: {
-                      id: props.idUser
-                    }
-                  }
-                }> <AccountBoxIcon /> </Link></IconButton> */}
-                            {/* <IconButton><Link href={`userprofile/${props.idUser}`}> <AccountBoxIcon /> </Link></IconButton> */}
                         </CardActions>
                     </Card>
                 </Grid>
@@ -217,7 +203,7 @@ function Display(props) {
 function Tags(props) {
     const classes = useStyles();
     return (
-        <Button style={{ padding: 0 }} className={classes.tags} size="small" variant="text" color="primary">
+        <Button style={{ padding: 0, fontSize: 12, textTransform: "lowercase" }} className={classes.tags} size="small" variant="text" color="primary">
             {"#" + props.tes1}
         </Button>
     )

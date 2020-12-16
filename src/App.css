@@ -4,14 +4,14 @@
   padding-bottom: 12px;
 }
 .contSwitch {
-  background: #232323;
+  background: #1d1d1d;
   background-size: cover;
   height: auto;
   padding-bottom: 12px;
   color: aliceblue;
 }
 .bodySwitch {
-  background: #232323;
+  background: #1d1d1d;
 }
 .textRight {
   text-align: right;
@@ -29,4 +29,12 @@
   border-radius: 10px;
   margin-bottom: -10px;
   margin-right: 10px;
+}
+.navigasiCont {
+  background-color: #1d1d1d;
+  width: "auto";
+  border-radius: 25px,
+}
+.navSwitch {
+  background-color: #1d1d1d;
 }

@@ -1,21 +1,12 @@
-import React, { useEffect, useState, Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import { Card, CardHeader, CardContent, CardActions, Avatar, Container, Grid, CardActionArea, Button, Link } from "@material-ui/core";
-import AccountBoxIcon from "@material-ui/icons/AccountBox";
+import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
-import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
-import FavoriteIcon from "@material-ui/icons/Favorite";
-import ModeCommentIcon from "@material-ui/icons/ModeComment";
-import GambarGeral from "./images/geral.jpg";
-
-import { GolfCourse, Title } from "@material-ui/icons";
-
+import APP_ID from "./key"
 
 const BASE_URL = 'https://dummyapi.io/data/api';
-const APP_ID = '5fcdfc858f7ef004033886f2';
 export default class UserList extends Component {
   state = {
     data: [],
@@ -46,15 +37,15 @@ function Display(props) {
       marginTop: 40,
       height: "400px",
       textAlign: "center",
-      display: "inline-block"
+      display: "inline-block",
+      borderRadius: 25
     },
     img: {
       height: "auto",
       width: "160px",
       paddingTop: "200px",
       paddingLeft: 40,
-      paddingRight: 30,
-      backgroundColor: "red" // 16:9
+      paddingRight: 30, 
     },
     imgHeader: {
       borderRadius: "50%",
