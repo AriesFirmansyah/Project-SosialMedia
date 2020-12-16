@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     height: "auto",
+    width: "auto",
     paddingTop: "56.25%", // 16:9
+
   },
   gambarHeader: {
     borderRadius: "50%",
@@ -32,7 +34,11 @@ const useStyles = makeStyles((theme) => ({
   },
   caption: {
     wordWrap: "break-word",
+  },
+  tags: {
+    fontSize: 12,
   }
+
 }));
 
 export default class Beranda extends Component {
@@ -73,17 +79,14 @@ function Display(props) {
             </CardHeader>
             <CardMedia className={classes.img} image={props.gambar} />
             <CardContent>
-              <div>
+              <Grid container direction="row" justify="center" alignItems="center">
                 {props.tag.map(tes =>
                   <Tags key={tes} tes1={tes} />
                 )}
-              </div>
-              <Typography className={classes.caption} style={{ textAlign: "justify" }} variant="body2" color="textSecondary" component="p">
+              </Grid>
+              <Typography className={classes.caption} style={{ textAlign: "justify", marginTop: 12 }} variant="body2" component="p">
                 {props.body}
                 <br />
-                {props.idPost}
-                <br />
-                {props.idUser}
                 <a style={{ textTransform: "lowercase", textDecoration: "none" }} target="_blank" href={props.link}>
                   {props.link}
                 </a>
@@ -113,9 +116,10 @@ function Display(props) {
 }
 
 function Tags(props) {
+  const classes = useStyles();
   return (
-    <Button style={{ marginLeft: 10, marginBottom: 10 }} size="small" variant="contained" color="primary">
-      {props.tes1}
+    <Button style={{ padding: 0 }} className={classes.tags} size="small" variant="text" color="primary">
+      {"#" + props.tes1}
     </Button>
   )
 }
