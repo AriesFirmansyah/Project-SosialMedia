@@ -15,13 +15,20 @@ import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import APP_ID from "./key"
+import Moment from 'moment';
+import id_picture from "./images/id.png"
+import gender_picture from "./images/gender.png"
+import birthdate_picture from "./images/birthdate.png"
+import email_picture from "./images/email.png"
+import phone_picture from "./images/phone.png"
+import register_picture from "./images/register.png"
 
 const BASE_URL = "https://dummyapi.io/data/api";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        marginTop: 15
+        marginTop: 15,
     },
     paper: {
         padding: theme.spacing(2),
@@ -29,10 +36,13 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "100%",
         borderRadius: 10,
         textAlign: "center",
+        borderRadius: 25,
     },
     image: {
         width: 192,
         height: 192,
+        cursor: "default",
+        marginTop: 10
     },
     img: {
         margin: 'auto',
@@ -41,7 +51,12 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 192,
         width: "100%",
         height: "100%",
+        borderRadius: 5,
     },
+    ikon : {
+        width: 30, 
+        marginBottom: -11
+    }
 }));
 
 const useStyles1 = makeStyles((theme) => ({
@@ -120,6 +135,8 @@ class UserProfile extends Component {
 function UserDetail(props) {
     const classes = useStyles();
     console.log(props);
+    const tanggal_lahir = Moment(props.data.dateOfBirth).format('LL')
+    const tanggal_regis = Moment(props.data.registerDate).format('LL')
     return (
         <div className={classes.root}>
             <Paper className={classes.paper} variant="outlined">
@@ -129,26 +146,41 @@ function UserDetail(props) {
                             <img className={classes.img} alt="Loading. ." src={props.data.picture} />
                         </ButtonBase>
                     </Grid>
-                    <Grid item xs={12} sm={7} container>
+                    <Grid item xs={12} sm={7} container style={{textAlign: "left"}}>
                         <Grid item xs container direction="column">
                             <Grid item xs>
-                                <Typography variant="body2" color="textSecondary">
-                                    <p alt="loading . .">{props.data.id}</p>
-                                </Typography>
                                 <Typography gutterBottom variant="subtitle1">
                                     <strong>{props.data.title + ". " + props.data.firstName + " " + props.data.lastName}</strong>
                                 </Typography>
-                                <Typography variant="body2" gutterBottom>
-                                    {props.data.gender}
+                                <Typography variant="body2" color="textSecondary">
+                                    <p alt="loading . .">
+                                        <img className={classes.ikon} src={id_picture} /> ID : {props.data.id}
+                                    </p>
                                 </Typography>
                                 <Typography variant="body2" gutterBottom>
-                                    {props.data.dateOfBirth}
+                                   <p> 
+                                        <img className={classes.ikon} src={gender_picture} /> Gender : {props.data.gender}
+                                    </p> 
                                 </Typography>
                                 <Typography variant="body2" gutterBottom>
-                                    {props.data.email}
+                                    <p> 
+                                        <img className={classes.ikon} src={birthdate_picture} /> Birth Date : {tanggal_lahir}
+                                    </p> 
                                 </Typography>
                                 <Typography variant="body2" gutterBottom>
-                                    {props.data.phone}
+                                    <p> 
+                                        <img className={classes.ikon} src={register_picture} /> Register Date : {tanggal_regis}
+                                    </p> 
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    <p> 
+                                        <img className={classes.ikon} src={email_picture} /> Email : {props.data.email}
+                                    </p> 
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    <p> 
+                                        <img className={classes.ikon} style={{height: 27}} src={phone_picture} /> Phone : {props.data.phone}
+                                    </p>     
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -161,6 +193,7 @@ function UserDetail(props) {
 
 function Display(props) {
     const classes = useStyles1();
+    const tanggal = Moment(props.tanggal).format('LLLL')
     return (
         <div style={{ display: "inline-block", margin: 22, align: "center" }}>
             <Grid container spacing={3}>
@@ -169,7 +202,7 @@ function Display(props) {
                         <CardHeader
                             avatar={<img className={classes.gambarHeader} src={props.gambarProfile} />}
                             title={props.nama}
-                            subheader={props.tanggal}>
+                            subheader={tanggal}>
                         </CardHeader>
                         <CardMedia className={classes.img} image={props.gambar} />
                         <CardContent>

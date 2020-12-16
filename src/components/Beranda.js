@@ -1,7 +1,6 @@
 import React, { Component, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
-import { Button, Card, CardHeader, CardContent, CardActions, Avatar, Container, Grid } from "@material-ui/core";
+import { Button, Card, CardHeader, CardContent, CardActions, Avatar, Container, Grid, Modal } from "@material-ui/core";
 import AccountBoxIcon from "@material-ui/icons/AccountBox";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
@@ -9,9 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ModeCommentIcon from "@material-ui/icons/ModeComment";
 import axios from "axios";
-import { ChangeHistorySharp, LocationSearchingTwoTone } from "@material-ui/icons";
 import { Link } from "@material-ui/core";
 import APP_ID from "./key"
+import Moment from 'moment';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 const BASE_URL = 'https://dummyapi.io/data/api';
 
@@ -45,7 +46,18 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: -38, 
     marginLeft: 0,
     align: "center"
-  }
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
 
 }));
 
@@ -73,8 +85,20 @@ export default class Beranda extends Component {
     )
   }
 }
+
 function Display(props) {
   const classes = useStyles();
+  var tanggal = Moment(props.tanggal).format('LLLL')
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className={classes.display}>
       <Grid container spacing={3}>
@@ -83,7 +107,7 @@ function Display(props) {
             <CardHeader
               avatar={<img className={classes.gambarHeader} src={props.gambarProfile} />}
               title={props.nama}
-              subheader={props.tanggal}>
+              subheader={tanggal}>
             </CardHeader>
             <CardMedia className={classes.img} image={props.gambar} />
             <CardContent>
@@ -106,7 +130,26 @@ function Display(props) {
                 <p style={{ fontSize: 13 }}> {props.like} Likes </p>
               </IconButton>
               <IconButton style={{marginTop: 3}}> 
-                  <ModeCommentIcon /> 
+                  <ModeCommentIcon onClick={handleOpen} /> 
+                  <Modal
+                    aria-labelledby="transition-modal-title"
+                    aria-describedby="transition-modal-description"
+                    className={classes.modal}
+                    open={open}
+                    onClose={handleClose}
+                    closeAfterTransition
+                    BackdropComponent={Backdrop}
+                    BackdropProps={{
+                      timeout: 500,
+                    }}
+                  >
+                    <Fade in={open}>
+                      <div className={classes.paper}>
+                        <h2 id="transition-modal-title">Transition modal</h2>
+                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                      </div>
+                    </Fade>
+                  </Modal>
               </IconButton>
               <IconButton style={{marginTop: 6}}>
                   <Link href={`userprofile/${props.idUser}`}> 
@@ -114,6 +157,7 @@ function Display(props) {
                   </Link>
               </IconButton>
             </CardActions>
+            
           </Card>
         </Grid>
       </Grid>
