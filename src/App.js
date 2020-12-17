@@ -16,7 +16,7 @@ import ViewListIcon from "@material-ui/icons/ViewList";
 import HomeIcon from "@material-ui/icons/Home";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SearchIcon from "@material-ui/icons/Search";
-import Gambar1 from "./components/images/g1.png"
+import Gambar1 from "./components/images/logo.png"
 
 
 function App() {
