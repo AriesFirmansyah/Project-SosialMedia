@@ -14,6 +14,8 @@ import Moment from 'moment';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
+import Comments from "./Comment"
+
 const BASE_URL = 'https://dummyapi.io/data/api';
 
 const useStyles = makeStyles((theme) => ({
@@ -51,12 +53,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
   },
 
 }));
@@ -112,8 +114,8 @@ function Display(props) {
             <CardMedia className={classes.img} image={props.gambar} />
             <CardContent>
               <Grid container direction="row" justify="center" alignItems="center">
-                {props.tag.map(tes =>
-                  <Tags key={tes} tes1={tes} />
+                {props.tag.map(displaytags =>
+                  <Tags key={displaytags} tags={displaytags} />
                 )}
               </Grid>
               <Typography className={classes.caption} style={{ textAlign: "justify", marginTop: 12 }} variant="body2" component="p">
@@ -131,22 +133,17 @@ function Display(props) {
               </IconButton>
               <IconButton style={{marginTop: 3}}> 
                   <ModeCommentIcon onClick={handleOpen} /> 
-                  <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    className={classes.modal}
-                    open={open}
-                    onClose={handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                      timeout: 500,
-                    }}
-                  >
+                  <Modal aria-labelledby="transition-modal-title" aria-describedby="transition-modal-description" className={classes.modal}
+                    open={open} onClose={handleClose} closeAfterTransition BackdropComponent={Backdrop} BackdropProps={{
+                    timeout: 500, }} >
                     <Fade in={open}>
                       <div className={classes.paper}>
-                        <h2 id="transition-modal-title">Transition modal</h2>
-                        <p id="transition-modal-description">react-transition-group animates me.</p>
+                        <div style={{paddingLeft: 10, borderBottom: "3px solid #5d5d5d"}} >
+                        <h2 id="transition-modal-title">Post Comments</h2>
+                        </div>
+                        <div>
+                          <Comments key={props.idPost} id={props.idPost} />
+                        </div>
                       </div>
                     </Fade>
                   </Modal>
@@ -157,7 +154,6 @@ function Display(props) {
                   </Link>
               </IconButton>
             </CardActions>
-            
           </Card>
         </Grid>
       </Grid>
@@ -169,7 +165,8 @@ function Tags(props) {
   const classes = useStyles();
   return (
     <Button style={{ padding: 0, fontSize: 12, textTransform: "lowercase" }} className={classes.tags} size="small" variant="text" color="primary">
-      {"#" + props.tes1}
+      {"#" + props.tags}
     </Button>
   )
 }
+

@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { CardHeader } from "@material-ui/core";
+import { CardHeader, Modal } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 import IconButton from "@material-ui/core/IconButton";
 import FavoriteIcon from "@material-ui/icons/Favorite";
@@ -22,6 +22,10 @@ import birthdate_picture from "./images/birthdate.png"
 import email_picture from "./images/email.png"
 import phone_picture from "./images/phone.png"
 import register_picture from "./images/register.png"
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+import Comments from "./Comment"
 
 const BASE_URL = "https://dummyapi.io/data/api";
 
@@ -81,7 +85,17 @@ const useStyles1 = makeStyles((theme) => ({
     },
     tags: {
         fontSize: 12,
-    }
+    },
+    modal: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    paper: {
+        backgroundColor: theme.palette.background.paper,
+        border: '2px solid #000',
+        boxShadow: theme.shadows[5],
+    },
 
 }));
 
@@ -194,6 +208,15 @@ function UserDetail(props) {
 function Display(props) {
     const classes = useStyles1();
     const tanggal = Moment(props.tanggal).format('LLLL')
+    const [open, setOpen] = React.useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
     return (
         <div style={{ display: "inline-block", margin: 22, align: "center" }}>
             <Grid container spacing={3}>
@@ -224,7 +247,23 @@ function Display(props) {
                                 <FavoriteIcon color="secondary" />
                                 <p style={{ fontSize: 13 }}> {props.like} Likes </p>
                             </IconButton>
-                            <IconButton> <ModeCommentIcon /> </IconButton>
+                            <IconButton style={{marginTop: 3}}> 
+                                <ModeCommentIcon onClick={handleOpen} /> 
+                                <Modal aria-labelledby="transition-modal-title" aria-describedby="transition-modal-description" className={classes.modal}
+                                    open={open} onClose={handleClose} closeAfterTransition BackdropComponent={Backdrop} BackdropProps={{
+                                    timeout: 500, }} >
+                                    <Fade in={open}>
+                                    <div className={classes.paper}>
+                                        <div style={{paddingLeft: 10, borderBottom: "3px solid #5d5d5d"}} >
+                                        <h2 id="transition-modal-title">Post Comments</h2>
+                                        </div>
+                                        <div>
+                                        <Comments key={props.idPost} id={props.idPost} />
+                                        </div>
+                                    </div>
+                                    </Fade>
+                                </Modal>
+                            </IconButton>
                         </CardActions>
                     </Card>
                 </Grid>

@@ -1,0 +1,105 @@
+import React, { Component, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import APP_ID from "./key"
+import Moment from 'moment';
+import { Button } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
+import profile_comment from "./images/account.png"
+
+const BASE_URL = "https://dummyapi.io/data/api";
+
+const useStyles = makeStyles((theme) => ({
+    image: {
+      width: 60,
+      marginTop: 10,
+      borderRadius: "50%"
+    },
+    form: {
+        '& > *': {
+          margin: theme.spacing(1),
+          width: '25ch',
+        },
+      },
+}));
+export default class Comments extends Component {
+    state = {
+        data: [],
+    };
+
+    handleComments= (X) => {
+        axios
+            .get(`${BASE_URL}/post/${X}/comment`, { headers: { "app-id": APP_ID } })
+            .then((res) => {
+                this.setState({ data: res.data.data });
+            })
+            .catch(console.error);
+    };
+
+    componentDidMount() {
+        this.handleComments(this.props.id);
+    }
+    
+    render() {
+        // this.setState({ id: this.props.id })
+        console.log(this.state.data);
+        return (
+            <div style={{marginLeft: 20, paddingRight: 20}}>
+                {this.state.data.map(display =>
+                    <Display key={display.id} nama={display.owner.firstName + " " + display.owner.lastName}
+                    komentar={display.message} tanggal={display.publishDate} 
+                    gambar={display.owner.picture}/>)}
+                <Post />
+            </div>
+        );
+    }
+}
+
+function publish(props) {
+    let date = new Date();
+    let menit = date.getMinutes();
+    let jam = date.getHours();
+    let tanggal = date.getDate();
+    let bulan = date.getMonth();
+    let tahun = date.getFullYear();
+    let a = tahun+"-"+bulan+"-"+tanggal+"T"+jam+" : "+menit
+    const b = Moment(a).format('LLL')
+    console.log(props)
+}
+function Post(props) {
+    const [input1, setinput1] = useState("")
+    const setInput = (a) => {
+      setinput1(a.target.value)
+    } 
+    const posting = (b) => {
+        publish(input1)
+    }
+    return (
+        <div>
+            <form style={{display: "flex", marginTop: 20}} noValidate autoComplete="off">
+                <img style={{width: 50, borderRadius: "50%"}} src={profile_comment} />
+                <TextField onChange={setInput} style={{marginLeft: 10}} id="standard-basic" defaultValue="Comment as guest..." />
+                <Button onClick={posting} style={{marginLeft: 10, marginTop: 10, height: 30, padding: 0, fontSize: 17, textTransform: "capitalize" }} size="small" variant="contained" color="primary">
+                    <strong> Post </strong>
+                </Button>
+            </form>
+        </div>
+    )
+}
+
+function Display(props) {
+    console.log(props)
+    const classes = useStyles();
+    const tanggal = Moment(props.tanggal).format('LLL')
+    return (
+        <div style={{padding: 20}}>
+            <div style={{display: "flex"}}>
+                <img className={classes.image} src={props.gambar} /> 
+                <p style={{marginLeft: 10}}><strong>{props.nama}</strong></p>
+                <p style={{marginLeft: 10}}>{props.komentar}</p>
+                
+            </div>
+            <p style={{marginLeft: 70, marginTop: -30, borderBottom: "2px solid #5d5d5d"}}>{tanggal}</p>
+        </div>
+    )
+}
