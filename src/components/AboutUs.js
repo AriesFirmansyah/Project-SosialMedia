@@ -7,13 +7,19 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Gambar1 from "./images/g1.png"
-import Gambar2 from "./images/g2.png"
+import aris from "./images/aris.jpg"
+import bona from "./images/bona.jpg"
+import dika from "./images/dika.jpg"
+import Paper from '@material-ui/core/Paper';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import instagram from './images/instagram.png'
+import linkedin from './images/linkedin.png'
+import github from './images/github.png'
+import "./../App.css"
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
+const aris_desc = "Hello, I'm Aries. I am undergraduate informatics student at Multimedia Nusantara University."
+
+const useStyles =  makeStyles((theme) => ({
   media: {
     height: 140,
   },
@@ -23,54 +29,112 @@ const useStyles = makeStyles({
     width: "230px",
     marginLeft: "160px",
     marginTop: "230px"
-  }
-});
+  },
+  root: {
+    flexGrow: 1,
+    marginBottom: 70
+  },
+  paper: {
+      padding: theme.spacing(2),
+      margin: 'auto',
+      maxWidth: "100%",
+      textAlign: "center",
+      borderRadius: 25,
+      marginBottom: 10,
+      marginTop: 25,
+  },
+  image: {
+      width: 192,
+      height: 192,
+      cursor: "default",
+      marginTop: 10
+  },
+  img: {
+      margin: 'auto',
+      display: 'block',
+      maxWidth: 252,
+      maxHeight: 392,
+      width: "250px",
+      height: "200px",
+      borderRadius: 5,
+      float: "right"
+  },
+  ikon: {
+      width: 30,
+      marginBottom: -11
+  },
+}));
 
 function MediaCard(props) {
   const classes = useStyles();
-
   return (
-    <div style={{display: "inline-block", margin: 22}}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                alt=""
-                height="150"
-                image={props.gambar}
-                title=""
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h3">
-                <h4>About Us</h4>
-                </Typography>
-                <Typography gutterBottom variant="body2" component="p">
-                  <p className="Title">Jurusan : {props.jurusan}</p>
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  <p className="Title">Nama : {props.name}</p>
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  <p className="Title">Nim : {props.nim}</p>
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-          </Card>
+      <div className={classes.root}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={5}>
+            <ButtonBase className={classes.image}>
+              <img className={classes.img} alt="Loading. ." src={props.gambar} />
+            </ButtonBase>
+          </Grid>
+          <Grid item xs={12} sm={7} container style={{ textAlign: "left" }}>
+            <Grid item xs container direction="column">
+                <Grid item xs>
+                  <h2 style={{marginTop: 3}}>{props.name}</h2>
+                  <p>{props.desc}</p>
+                  <code><i>NIM : {props.nim}</i></code>
+                  <div style={{display: "flex", marginTop: 20, borderBottom: "1px solid #707070"}}>
+                    <a href={props.linkedin} alt="Linkedin" target="_blank" class="p1"><img src={linkedin}/></a>
+                    <a href={props.ig} alt="instagram" target="_blank" class="p2"><img src={instagram}/></a>
+                    <a href={props.github} alt="github" target="_blank" class="p3"><img src={github} /></a>
+                  </div>
+                </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </div>
+  );
+}
+
+function Bona(props) {
+  const classes = useStyles();
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={7} container style={{ textAlign: "left" }}>
+          <Grid item xs container direction="column">
+              <Grid item xs>
+                <h2 style={{marginTop: 3}}>{props.name}</h2>
+                <p>{props.desc}</p>
+                <code><i>NIM : {props.nim}</i></code>
+                <div style={{display: "flex", borderBottom: "1px solid #707070", marginTop: 20}}>
+                  <a href={props.linkedin} alt="Linkedin" target="_blank" class="p1"><img src={linkedin}/></a>
+                  <a href={props.ig} alt="instagram" target="_blank" class="p2"><img src={instagram}/></a>
+                  <a href={props.github} alt="github" target="_blank" class="p3"><img src={github} /></a>
+                </div>
+              </Grid>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={5}>
+          <ButtonBase className={classes.image}>
+            <img className={classes.img} alt="Loading. ." src={props.gambar} />
+          </ButtonBase>
         </Grid>
       </Grid>
     </div>
   );
 }
-
 function MediaCall() {
+  const classes = useStyles();
   return (
-    <div style={{marginLeft: "auto", textAlign: "center"}}> 
-      <MediaCard jurusan="Informatika" name="Aries Firmansyah" gambar={Gambar1}  nim="00000037991" />
-      <MediaCard jurusan="Informatika" name="Bonaventura Sanjaya" gambar={Gambar2} nim="00000038083" />
-      <MediaCard jurusan="Informatika" name="Rahmandhika" gambar={Gambar1} nim="00000040733" />
-    </div>
+    <Paper className={classes.paper} variant="outlined">
+      <div style={{marginLeft: "auto", textAlign: "center"}}> 
+        <MediaCard linkedin="https://github.com/AriesFirmansyah" ig="https://github.com/AriesFirmansyah" 
+        github="https://github.com/AriesFirmansyah" desc={aris_desc} name="Aries Firmansyah" gambar={aris}  nim="00000037991" />
+        <Bona linkedin="https://github.com/AriesFirmansyah" ig="https://github.com/AriesFirmansyah" 
+        github="https://github.com/AriesFirmansyah" desc={aris_desc} name="Bonaventura Sanjaya" gambar={bona} nim="00000038083" />
+        <MediaCard linkedin="https://github.com/AriesFirmansyah" ig="https://github.com/AriesFirmansyah" 
+        github="https://github.com/AriesFirmansyah" desc={aris_desc} name="Rahmandhika" gambar={dika} nim="00000040733" />
+      </div>
+    </Paper>
   )
 }
 

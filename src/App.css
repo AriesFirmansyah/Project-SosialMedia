@@ -38,3 +38,21 @@
 .navSwitch {
   background-color: #1d1d1d;
 }
+.p1 img{
+  width: 40px;
+  margin-top: 2px;
+  margin-left: -5px;
+  height: 40px;
+}
+.p2 img{
+  margin-left: 5px;
+  margin-top: -2px;
+  width: 49px;
+  height:auto;
+}
+.p3 img {
+  width: 42px;
+  margin-left: 5px;
+  margin-top: 4px;
+  height: 38px;
+}
