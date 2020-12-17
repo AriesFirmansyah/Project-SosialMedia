@@ -45,7 +45,7 @@ function Display(props) {
       width: "160px",
       paddingTop: "200px",
       paddingLeft: 40,
-      paddingRight: 30, 
+      paddingRight: 30,
     },
     imgHeader: {
       borderRadius: "50%",
@@ -79,7 +79,7 @@ function Display(props) {
             </CardActionArea>
             <CardActions>
               <Grid container direction="row" justify="center" alignItems="flex-end">
-                <Link href={`userprofile/${props.idUser}`}>
+                <Link href={`/userprofile/${props.idUser}`}>
                   <Button size="small" variant="contained" color="primary">
                     View Profile
                   </Button>

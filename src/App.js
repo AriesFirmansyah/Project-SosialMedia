@@ -1,7 +1,6 @@
 import "./App.css";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Router } from "@reach/router";
-import axios from "axios";
 import $ from "jquery";
 
 /* PAGES */
@@ -9,6 +8,7 @@ import Beranda from "./components/Beranda";
 import UserList from "./components/UserList"
 import AboutUs from "./components/AboutUs";
 import UserProfile from "./components/UserProfile";
+import Search from "./components/Search";
 import { Container, Grid, Switch, FormControlLabel, Link } from "@material-ui/core";
 import BottomNavigation from "@material-ui/core/BottomNavigation";
 import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
@@ -35,7 +35,7 @@ function App() {
               onChange={switchDisplay}
               control={<Switch color="primary" />}
             />
-            <p className="inline" style={{ marginLeft: -17, fontSize: 12, fontWeight: "bold"  }}>
+            <p className="inline" style={{ marginLeft: -17, fontSize: 12, fontWeight: "bold" }}>
               Dark
             </p>
           </Grid>
@@ -47,7 +47,7 @@ function App() {
               <Link href="/userlist">
                 <BottomNavigationAction className="navigasi" label="User List" value="userlist" icon={<ViewListIcon />} />
               </Link>
-              <Link href="/userlist">
+              <Link href="/search/animal">
                 <BottomNavigationAction className="navigasi" label="Search" value="search" icon={<SearchIcon />} />
               </Link>
               <Link href="/aboutus">
@@ -61,6 +61,7 @@ function App() {
           <Beranda path="/beranda"></Beranda>
           <UserList path="/userlist"></UserList>
           <AboutUs path="/aboutus/"></AboutUs>
+          <Search path="/search/:id"></Search>
           <UserProfile path="/userprofile/:id"></UserProfile>
         </Router>
       </Container>
