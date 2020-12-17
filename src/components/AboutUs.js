@@ -67,9 +67,9 @@ function MediaCard(props) {
 function MediaCall() {
   return (
     <div style={{marginLeft: "auto", textAlign: "center"}}> 
-      <MediaCard jurusan="Informatika" name="Aries Firmansyah" gambar={Gambar1}  nim="000"/>
-      <MediaCard jurusan="Informatika" name="Bonaventura Sanjaya" gambar={Gambar2} />
-      <MediaCard jurusan="Informatika" name="Rahmandhika" gambar={Gambar1} />
+      <MediaCard jurusan="Informatika" name="Aries Firmansyah" gambar={Gambar1}  nim="00000037991" />
+      <MediaCard jurusan="Informatika" name="Bonaventura Sanjaya" gambar={Gambar2} nim="00000038083" />
+      <MediaCard jurusan="Informatika" name="Rahmandhika" gambar={Gambar1} nim="00000040733" />
     </div>
   )
 }
