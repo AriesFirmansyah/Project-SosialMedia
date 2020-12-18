@@ -17,6 +17,8 @@ import HomeIcon from "@material-ui/icons/Home";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import SearchIcon from "@material-ui/icons/Search";
 import Gambar1 from "./components/images/logo.png"
+import Tags from "./components/Tags"
+import SearchByName from "./components/SearchByName"
 
 
 function App() {
@@ -47,7 +49,7 @@ function App() {
               <Link href="/userlist">
                 <BottomNavigationAction className="navigasi" label="User List" value="userlist" icon={<ViewListIcon />} />
               </Link>
-              <Link href="/search/animal">
+              <Link href="/search">
                 <BottomNavigationAction className="navigasi" label="Search" value="search" icon={<SearchIcon />} />
               </Link>
               <Link href="/aboutus">
@@ -61,7 +63,9 @@ function App() {
           <Beranda path="/beranda"></Beranda>
           <UserList path="/userlist"></UserList>
           <AboutUs path="/aboutus/"></AboutUs>
-          <Search path="/search/:id"></Search>
+          <Search path="/search"></Search>
+          <SearchByName path="/search/byname"></SearchByName>
+          <Tags path="/search/:id"></Tags>
           <UserProfile path="/userprofile/:id"></UserProfile>
         </Router>
       </Container>
