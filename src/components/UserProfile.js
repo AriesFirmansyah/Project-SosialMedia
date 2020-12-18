@@ -87,12 +87,14 @@ class UserProfile extends Component {
         return (
             <div>
                 <UserDetail data={this.state.data} />
-                <div style={{ marginLeft: "auto", textAlign: "center" }}>
+                <Grid container direction="row" justify="center" alignItems="center">
+                    {/* <div style={{ marginLeft: "auto", textAlign: "center" }}> */}
                     {this.state.dataPost.map(display =>
                         <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
                             gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
                             body={display.text} link={display.link} tag={display.tags} />)}
-                </div>
+                    {/* </div> */}
+                </Grid>
             </div>
         );
     }

@@ -65,7 +65,7 @@ function App() {
           <AboutUs path="/aboutus/"></AboutUs>
           <Search path="/search"></Search>
           <SearchByName path="/search/byname"></SearchByName>
-          <Tags path="/search/:id"></Tags>
+          <Tags path="/search/tag/:id"></Tags>
           <UserProfile path="/userprofile/:id"></UserProfile>
         </Router>
       </Container>
