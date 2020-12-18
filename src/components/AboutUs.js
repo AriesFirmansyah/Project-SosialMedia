@@ -52,9 +52,9 @@ const useStyles =  makeStyles((theme) => ({
   img: {
       margin: 'auto',
       display: 'block',
-      maxWidth: 252,
-      maxHeight: 392,
-      width: "250px",
+      maxWidth: 220,
+      maxHeight: 200,
+      width: "220px",
       height: "200px",
       borderRadius: 5,
       float: "right"
