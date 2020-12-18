@@ -56,7 +56,6 @@ export default class Search extends Component {
                         />
                     </Grid>
                 </div>
-                
                 <Grid container direction="row" justify="flex-start" alignItems="baseline" style={{marginTop: 10}}>
                     {this.state.data.map(display =>
                         <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}

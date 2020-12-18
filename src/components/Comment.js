@@ -53,30 +53,17 @@ export default class Comments extends Component {
     }
 }
 
-function publish(props) {
-    let date = new Date();
-    let menit = date.getMinutes();
-    let jam = date.getHours();
-    let tanggal = date.getDate();
-    let bulan = date.getMonth();
-    let tahun = date.getFullYear();
-    let a = tahun + "-" + bulan + "-" + tanggal + "T" + jam + " : " + menit
-    const b = Moment(a).format('LLL')
-}
-function Post(props) {
+function Post() {
     const [input1, setinput1] = useState("")
     const setInput = (a) => {
         setinput1(a.target.value)
-    }
-    const posting = (b) => {
-        publish(input1)
     }
     return (
         <div style={{ padding: 20 }}>
             <form style={{ display: "flex", marginTop: 20 }} noValidate autoComplete="off">
                 <img style={{ width: 50, borderRadius: "50%" }} src={profile_comment} />
                 <TextField onChange={setInput} style={{ marginLeft: 10 }} id="standard-basic" placeholder="Comment as guest..." />
-                <Button onClick={posting} style={{ marginLeft: 10, marginTop: 10, height: 30, padding: 0, fontSize: 17, textTransform: "capitalize" }} size="small" variant="contained" color="primary">
+                <Button style={{ marginLeft: 10, marginTop: 10, height: 30, padding: 0, fontSize: 17, textTransform: "capitalize" }} size="small" variant="contained" color="primary">
                     <strong> Post </strong>
                 </Button>
             </form>
