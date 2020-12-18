@@ -1,29 +1,42 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link } from "@material-ui/core";
+import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link, Input } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
-import APP_ID from "./key"
+import APP_ID from "./key";
+import SearchByName from "./SearchByName";
 
 const BASE_URL = 'https://dummyapi.io/data/api';
+
 export default class UserList extends Component {
   state = {
     data: [],
+    search: "",
   }
   constructor() {
     super()
-    axios.get(`${BASE_URL}/user`, { headers: { 'app-id': APP_ID } })
+    axios.get(`${BASE_URL}/user?limit=30`, { headers: { 'app-id': APP_ID } })
       .then(res => {
         this.setState({ data: res.data.data })
         console.log(this.state.data)
       })
       .catch(console.error)
   }
+
+  onchange = e => {
+    this.setState({ search: e.target.value });
+  }
+
   render() {
+    const { search } = this.state;
+    const filteredUser = this.state.data.filter(user => {
+      return user.firstName.toLowerCase().indexOf(search.toLowerCase()) !== -1
+    })
     return (
       <div style={{ marginLeft: "auto", textAlign: "center" }}>
-        {this.state.data.map(display =>
+        <SearchByName onChange={this.onchange} />
+        {filteredUser.map(display =>
           <Display key={display.id} idUser={display.id} nama={display.title + "." + display.firstName + " " + display.lastName}
             gambar={display.picture} email={display.email} />)}
       </div>

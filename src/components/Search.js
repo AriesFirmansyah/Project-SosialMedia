@@ -27,10 +27,10 @@ export default class Search extends Component {
                   Search By Tags
                   </Button>
               </Link>
-              <Link style={{ marginLeft: 5 }} href="/search/byname">
+              <Link style={{ marginLeft: 5 }} href="/userlist">
                 <Button size="small" variant="contained" color="primary">
                   Search By Name
-                  </Button>
+                </Button>
               </Link>
             </Grid>
           </Grid>
