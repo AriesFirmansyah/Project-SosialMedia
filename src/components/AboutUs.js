@@ -18,6 +18,8 @@ import github from './images/github.png'
 import "./../App.css"
 
 const aris_desc = "Hello, I'm Aries. I am undergraduate informatics student at Multimedia Nusantara University."
+const bona_desc = "Hello, I'm Bona. I am undergraduate informatics student at Multimedia Nusantara University."
+const dika_desc = "Hello, I'm Dika. I am undergraduate informatics student at Multimedia Nusantara University."
 
 const useStyles =  makeStyles((theme) => ({
   media: {
@@ -127,12 +129,12 @@ function MediaCall() {
   return (
     <Paper className={classes.paper} variant="outlined">
       <div style={{marginLeft: "auto", textAlign: "center"}}> 
-        <MediaCard linkedin="https://github.com/AriesFirmansyah" ig="https://github.com/AriesFirmansyah" 
+        <MediaCard linkedin="https://github.com/AriesFirmansyah" ig="https://www.instagram.com/ariesfirmansyah_/" 
         github="https://github.com/AriesFirmansyah" desc={aris_desc} name="Aries Firmansyah" gambar={aris}  nim="00000037991" />
-        <Bona linkedin="https://github.com/AriesFirmansyah" ig="https://github.com/AriesFirmansyah" 
-        github="https://github.com/AriesFirmansyah" desc={aris_desc} name="Bonaventura Sanjaya" gambar={bona} nim="00000038083" />
-        <MediaCard linkedin="https://github.com/AriesFirmansyah" ig="https://github.com/AriesFirmansyah" 
-        github="https://github.com/AriesFirmansyah" desc={aris_desc} name="Rahmandhika" gambar={dika} nim="00000040733" />
+        <Bona linkedin="https://github.com/AriesFirmansyah" ig="https://www.instagram.com/bonbonzay/" 
+        github="https://github.com/ayaayawae" desc={bona_desc} name="Bonaventura Sanjaya" gambar={bona} nim="00000038083" />
+        <MediaCard linkedin="https://github.com/AriesFirmansyah" ig="https://www.instagram.com/rhmndhika/" 
+        github="https://github.com/rhmndhika" desc={dika_desc} name="Rahmandhika" gambar={dika} nim="00000040733" />
       </div>
     </Paper>
   )
