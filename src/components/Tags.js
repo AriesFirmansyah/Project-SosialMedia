@@ -35,8 +35,6 @@ export default class Search extends Component {
     }
 
     render() {
-        // this.setState({ id: this.props.id })
-        console.log(this.state.data);
         return (
             <div style={{ textAlign: "center", margin: "auto" }}>
                 <div style={{ marginTop: 10 }}>

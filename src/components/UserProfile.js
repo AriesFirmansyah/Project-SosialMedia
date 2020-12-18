@@ -82,18 +82,14 @@ class UserProfile extends Component {
     }
 
     render() {
-        // this.setState({ id: this.props.id })
-        console.log(this.props);
         return (
             <div>
                 <UserDetail data={this.state.data} />
                 <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 10 }}>
-                    {/* <div style={{ marginLeft: "auto", textAlign: "center" }}> */}
                     {this.state.dataPost.map(display =>
                         <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
                             gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
                             body={display.text} link={display.link} tag={display.tags} />)}
-                    {/* </div> */}
                 </Grid>
             </div>
         );
@@ -102,7 +98,6 @@ class UserProfile extends Component {
 
 function UserDetail(props) {
     const classes = useStyles();
-    console.log(props);
     const tanggal_lahir = Moment(props.data.dateOfBirth).format('LL')
     const tanggal_regis = Moment(props.data.registerDate).format('LL')
     return (

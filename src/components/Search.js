@@ -12,9 +12,6 @@ import DisplayCard from "./DisplayCard";
 const BASE_URL = 'https://dummyapi.io/data/api';
 const awal = "animal"
 
-const options = ['animal', 'dog', 'cat', 'pet', 'mammal', 'puppy', 'human', 'beach',
-  'nature', 'plant', 'mountain', 'ocean', 'outdoors', 'field', 'sunset']
-
 export default class Search extends Component {
   render() {
     return (
@@ -22,13 +19,13 @@ export default class Search extends Component {
         <Container id="" maxWidth="md">
           <Grid container spacing={3}>
             <Grid style={{ textAlign: "center" }} item xs={12}>
-              <Link href={`/search/tag/${awal}`}>
-                <Button size="small" variant="contained" color="secondary">
+              <Link style={{ textDecoration: "none" }} href={`/search/tag/${awal}`}>
+                <Button style={{textDecoration: "none"}} size="small" variant="contained" color="secondary">
                   Search By Tags
                   </Button>
               </Link>
-              <Link style={{ marginLeft: 5 }} href="/userlist">
-                <Button size="small" variant="contained" color="primary">
+              <Link style={{ marginLeft: 5, textDecoration: "none" }} href="/userlist">
+                <Button style={{textDecoration: "none"}} size="small" variant="contained" color="primary">
                   Search By Name
                 </Button>
               </Link>

@@ -28,13 +28,13 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '50%',
+    display: "flex"
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
-    position: 'absolute',
     pointerEvents: 'none',
-    display: 'flex',
+    display: 'inline-block',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -48,13 +48,17 @@ export default function SearchByName(props) {
         <Grid container direction="row" justify="center" alignItems="center" item xs={12}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
+              <Grid item xs={6}>
               <SearchIcon />
+              </Grid>
             </div>
-            <InputBase
-              placeholder="Search. . . (Firstname)"
-              textAlign="center"
-              onChange={props.onChange}
-            />
+            <Grid item xs={6}>
+              <InputBase
+                placeholder="Search. . . (Firstname)"
+                textAlign="center"
+                onChange={props.onChange}
+              />
+            </Grid>
           </div>
         </Grid>
       </Grid>

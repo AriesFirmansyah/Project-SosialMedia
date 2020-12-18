@@ -41,8 +41,6 @@ export default class Comments extends Component {
     }
 
     render() {
-        // this.setState({ id: this.props.id })
-        console.log(this.state.data);
         return (
             <div style={{ marginLeft: 0, paddingRight: 0 }}>
                 {this.state.data.map(display =>
@@ -64,7 +62,6 @@ function publish(props) {
     let tahun = date.getFullYear();
     let a = tahun + "-" + bulan + "-" + tanggal + "T" + jam + " : " + menit
     const b = Moment(a).format('LLL')
-    console.log(props)
 }
 function Post(props) {
     const [input1, setinput1] = useState("")
@@ -86,9 +83,7 @@ function Post(props) {
         </div>
     )
 }
-
 function Display(props) {
-    console.log(props)
     const classes = useStyles();
     const tanggal = Moment(props.tanggal).format('LLL')
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link, Input } from "@material-ui/core";
+import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import APP_ID from "./key";
@@ -19,7 +19,6 @@ export default class UserList extends Component {
     axios.get(`${BASE_URL}/user?limit=30`, { headers: { 'app-id': APP_ID } })
       .then(res => {
         this.setState({ data: res.data.data })
-        console.log(this.state.data)
       })
       .catch(console.error)
   }

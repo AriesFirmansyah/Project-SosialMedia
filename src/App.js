@@ -1,22 +1,22 @@
-import "./App.css";
-import React from "react";
-import { Router } from "@reach/router";
-import $ from "jquery";
+import "./App.css"
+import React from "react"
+import { Router } from "@reach/router"
+import $ from "jquery"
+import Search from "./components/Search"
+import { Container, Grid, Switch, FormControlLabel, Link } from "@material-ui/core"
+import BottomNavigation from "@material-ui/core/BottomNavigation"
+import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
+import ViewListIcon from "@material-ui/icons/ViewList"
+import HomeIcon from "@material-ui/icons/Home"
+import AccountCircleIcon from "@material-ui/icons/AccountCircle"
+import SearchIcon from "@material-ui/icons/Search"
+import Gambar1 from "./components/images/logo.png"
 
 /* PAGES */
-import Beranda from "./components/Beranda";
+import Beranda from "./components/Beranda"
 import UserList from "./components/UserList"
-import AboutUs from "./components/AboutUs";
-import UserProfile from "./components/UserProfile";
-import Search from "./components/Search";
-import { Container, Grid, Switch, FormControlLabel, Link } from "@material-ui/core";
-import BottomNavigation from "@material-ui/core/BottomNavigation";
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import ViewListIcon from "@material-ui/icons/ViewList";
-import HomeIcon from "@material-ui/icons/Home";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import SearchIcon from "@material-ui/icons/Search";
-import Gambar1 from "./components/images/logo.png"
+import AboutUs from "./components/AboutUs"
+import UserProfile from "./components/UserProfile"
 import Tags from "./components/Tags"
 import SearchByName from "./components/SearchByName"
 

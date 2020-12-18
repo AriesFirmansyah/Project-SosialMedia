@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import APP_ID from "./key"
 import { Grid } from "@material-ui/core";
-
 import DisplayCard from "./DisplayCard";
 
 const BASE_URL = 'https://dummyapi.io/data/api';
@@ -16,7 +15,6 @@ export default class Beranda extends Component {
     axios.get(`${BASE_URL}/post`, { headers: { 'app-id': APP_ID } })
       .then(res => {
         this.setState({ data: res.data.data })
-        console.log(this.state.data)
       })
       .catch(console.error)
   }
