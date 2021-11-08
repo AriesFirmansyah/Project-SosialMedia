@@ -9,7 +9,7 @@ import axios from "axios";
 
 import DisplayCard from "./DisplayCard";
 
-const BASE_URL = 'https://dummyapi.io/data/api';
+const BASE_URL = 'https://dummyapi.io/data/v1';
 const awal = "animal"
 
 export default class Search extends Component {

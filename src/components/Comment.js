@@ -7,7 +7,7 @@ import { Button, Link } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import profile_comment from "./images/account.png"
 
-const BASE_URL = "https://dummyapi.io/data/api";
+const BASE_URL = "https://dummyapi.io/data/v1";
 
 const useStyles = makeStyles((theme) => ({
     image: {

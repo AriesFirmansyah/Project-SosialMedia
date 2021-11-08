@@ -8,7 +8,7 @@ import axios from "axios";
 
 import DisplayCard from "./DisplayCard";
 
-const BASE_URL = 'https://dummyapi.io/data/api';
+const BASE_URL = 'https://dummyapi.io/data/v1';
 
 const options = ['animal', 'dog', 'cat', 'pet', 'mammal', 'puppy', 'human', 'beach',
     'nature', 'plant', 'mountain', 'ocean', 'outdoors', 'field', 'sunset']

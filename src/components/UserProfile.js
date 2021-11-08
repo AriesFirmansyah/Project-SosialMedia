@@ -16,7 +16,7 @@ import register_picture from "./images/register.png"
 
 import DisplayCard from "./DisplayCard";
 
-const BASE_URL = "https://dummyapi.io/data/api";
+const BASE_URL = "https://dummyapi.io/data/v1";
 
 const useStyles = makeStyles((theme) => ({
     root: {

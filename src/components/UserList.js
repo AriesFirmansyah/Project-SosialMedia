@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import APP_ID from "./key";
 import SearchByName from "./SearchByName";
 
-const BASE_URL = 'https://dummyapi.io/data/api';
+const BASE_URL = 'https://dummyapi.io/data/v1';
 
 export default class UserList extends Component {
   state = {

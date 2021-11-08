@@ -4,7 +4,7 @@ import APP_ID from "./key"
 import { Grid } from "@material-ui/core";
 import DisplayCard from "./DisplayCard";
 
-const BASE_URL = 'https://dummyapi.io/data/api';
+const BASE_URL = 'https://dummyapi.io/data/v1';
 
 export default class Beranda extends Component {
   state = {
