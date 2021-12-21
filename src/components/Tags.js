@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import { Grid } from "@material-ui/core";
+import { Grid, CircularProgress } from "@material-ui/core";
 
 import APP_ID from "./key";
 import axios from "axios";
@@ -36,33 +36,41 @@ export default class Search extends Component {
 
     render() {
         return (
-            <div style={{ textAlign: "center", margin: "auto" }}>
-                <div style={{ marginTop: 10 }}>
-                    {/* <div>{`value: ${this.state.value !== null ? `'${this.state.value}'` : 'null'}`}</div> */}
-                    <Grid container direction="row" justify="center" alignItems="center">
-                        <h3>Tags:</h3>
-                        <Autocomplete
-                            value={this.state.value}
-                            onChange={(event, newValue) => {
-                                this.setState({ value: newValue })
-                                this.handleSearch(newValue);
-                            }}
-                            size="small"
-                            id="controllable-states-demo"
-                            autoComplete
-                            options={options}
-                            style={{ width: 150, marginLeft: 15 }}
-                            renderInput={(params) => <TextField {...params} label="" variant="outlined" />}
-                        />
+            this.state.data ? (
+                <div style={{ textAlign: "center", margin: "auto" }}>
+                    <div style={{ marginTop: 10 }}>
+                        {/* <div>{`value: ${this.state.value !== null ? `'${this.state.value}'` : 'null'}`}</div> */}
+                        <Grid container direction="row" justify="center" alignItems="center">
+                            <h3>Tags:</h3>
+                            <Autocomplete
+                                value={this.state.value}
+                                onChange={(event, newValue) => {
+                                    this.setState({ value: newValue })
+                                    this.handleSearch(newValue);
+                                }}
+                                size="small"
+                                id="controllable-states-demo"
+                                autoComplete
+                                options={options}
+                                style={{ width: 150, marginLeft: 15 }}
+                                renderInput={(params) => <TextField {...params} label="" variant="outlined" />}
+                            />
+                        </Grid>
+                    </div>
+                    <Grid container direction="row" justify="flex-start" alignItems="baseline" style={{marginTop: 10}}>
+                        {/* {this.state.data.map(display =>
+                            <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
+                                gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
+                                body={display.text} link={display.link} tag={display.tags} />)} */}
+                        {this.state.data.map(display =>
+                            <DisplayCard key={display.id} item={display} />)}
                     </Grid>
                 </div>
-                <Grid container direction="row" justify="flex-start" alignItems="baseline" style={{marginTop: 10}}>
-                    {this.state.data.map(display =>
-                        <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
-                            gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
-                            body={display.text} link={display.link} tag={display.tags} />)}
+            ) : (
+                <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 50 }}>
+                    <CircularProgress />
                 </Grid>
-            </div>
+            )
         );
     }
 }

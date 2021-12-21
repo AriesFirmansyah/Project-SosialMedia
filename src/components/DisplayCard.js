@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
 
 function DisplayCard(props) {
     const classes = useStyles();
-    var tanggal = Moment(props.tanggal).format('LLLL')
+    var tanggal = Moment(props.item.publishDate).format('LLLL')
 
     const [open, setOpen] = React.useState(false);
 
@@ -70,29 +70,33 @@ function DisplayCard(props) {
     return (
         <Card className={classes.root}>
             <CardHeader
-                avatar={<img className={classes.gambarHeader} src={props.gambarProfile} />}
-                title={props.nama} subheader={tanggal}>
+                avatar={
+                    <Avatar component={Link} href={`/userprofile/${props.item.owner.id}`} > 
+                        <img className={classes.gambarHeader} src={props.item.owner.picture} />
+                    </Avatar>
+                }
+                title={props.item.owner.firstName+ " " +props.item.owner.lastName} subheader={tanggal}>
             </CardHeader>
-            <CardMedia className={classes.img} image={props.gambar} />
+            <CardMedia className={classes.img} image={props.item.image} />
             <CardContent>
                 <Grid container direction="row" justify="center" alignItems="center">
-                    {props.tag.map(displaytags =>
+                    {props.item.tags.map(displaytags =>
                         <Link href={`/search/tag/${displaytags}`}>
                             <Tags key={displaytags} tags={displaytags} />
                         </Link>
                     )}
                 </Grid>
                 <Typography className={classes.caption} style={{ textAlign: "justify", marginTop: 12, textOverflow: "ellipsis" }} variant="body2" component="p">
-                    {props.body} <br />
+                    {props.item.text} <br />
                     <a style={{ textTransform: "lowercase", textDecoration: "none" }} target="_blank" href={props.link}>
-                        {props.link}
+                        {props.item.link}
                     </a>
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton>
                     <FavoriteIcon color="secondary" />
-                    <p style={{ fontSize: 13 }}> {props.like} Likes </p>
+                    <p style={{ fontSize: 13 }}> {props.item.likes} Likes </p>
                 </IconButton>
                 <IconButton style={{ marginTop: 3 }}>
                     <ModeCommentIcon onClick={handleOpen} />
@@ -106,14 +110,14 @@ function DisplayCard(props) {
                                     <h2 id="transition-modal-title">Post Comments</h2>
                                 </div>
                                 <div>
-                                    <Comments key={props.idPost} id={props.idPost} />
+                                    <Comments key={props.item.id} id={props.item.id} />
                                 </div>
                             </div>
                         </Fade>
                     </Modal>
                 </IconButton>
                 <IconButton style={{ marginTop: 6 }}>
-                    <Link href={`/userprofile/${props.idUser}`}>
+                    <Link href={`/userprofile/${props.item.owner.id}`}>
                         <AccountBoxIcon />
                     </Link>
                 </IconButton>

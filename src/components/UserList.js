@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
-import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link } from "@material-ui/core";
+import { Card, CardContent, CardActions, Grid, CardActionArea, Button, Link, CircularProgress } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import APP_ID from "./key";
@@ -32,13 +32,23 @@ export default class UserList extends Component {
     const filteredUser = this.state.data.filter(user => {
       return user.firstName.toLowerCase().indexOf(search.toLowerCase()) !== -1
     })
+    
     return (
-      <div style={{ marginLeft: "auto", textAlign: "center" }}>
-        <SearchByName onChange={this.onchange} />
-        {filteredUser.map(display =>
-          <Display key={display.id} idUser={display.id} nama={display.title + "." + display.firstName + " " + display.lastName}
-            gambar={display.picture} email={display.email} />)}
-      </div>
+      this.state.data !='' ? (
+        <div style={{ marginLeft: "auto", textAlign: "center" }}>
+          <SearchByName onChange={this.onchange} />
+          {/* {filteredUser.map(display =>
+            <Display key={display.id} idUser={display.id} nama={display.title + "." + display.firstName + " " + display.lastName}
+              gambar={display.picture} email={display.email} />)} */}
+          {filteredUser.map(display =>
+            <Display key={display.id} item={display} />)}
+        </div>
+      ) : (
+        <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 50 }}>
+          <CircularProgress />
+        </Grid>
+      )
+
     )
   }
 }
@@ -71,37 +81,37 @@ function Display(props) {
 
   const classes = useStyles();
   return (
-    <div style={{ display: "inline-block", margin: 22 }}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardMedia
-                className={classes.img}
-                image={props.gambar}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {props.nama}
-                </Typography>
-                <Typography className={classes.emailBreak} variant="body2" color="textSecondary" component="p">
-                  {props.email}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Grid container direction="row" justify="center" alignItems="flex-end">
-                <Link href={`/userprofile/${props.idUser}`}>
-                  <Button size="small" variant="contained" color="primary">
-                    View Profile
-                  </Button>
-                </Link>
-              </Grid>
-            </CardActions>
-          </Card>
+      <div style={{ display: "inline-block", margin: 22 }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Card className={classes.root}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.img}
+                  image={props.item.picture}
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    {props.item.title + ". " + props.item.firstName + " " + props.item.lastName}
+                  </Typography>
+                  <Typography className={classes.emailBreak} variant="body2" color="textSecondary" component="p">
+                    {props.item.email}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Grid container direction="row" justify="center" alignItems="flex-end">
+                  <Link href={`/userprofile/${props.item.id}`}>
+                    <Button size="small" variant="contained" color="primary">
+                      View Profile
+                    </Button>
+                  </Link>
+                </Grid>
+              </CardActions>
+            </Card>
+          </Grid>
         </Grid>
-      </Grid>
-    </div>
+      </div>
   );
 }
 

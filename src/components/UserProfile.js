@@ -15,6 +15,7 @@ import phone_picture from "./images/phone.png"
 import register_picture from "./images/register.png"
 
 import DisplayCard from "./DisplayCard";
+import { Box, CircularProgress } from "@material-ui/core";
 
 const BASE_URL = "https://dummyapi.io/data/v1";
 
@@ -83,15 +84,23 @@ class UserProfile extends Component {
 
     render() {
         return (
-            <div>
-                <UserDetail data={this.state.data} />
-                <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 10 }}>
-                    {this.state.dataPost.map(display =>
-                        <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
-                            gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
-                            body={display.text} link={display.link} tag={display.tags} />)}
+            this.state.data != '' && this.state.dataPost != '' ? (
+                <div>
+                    <UserDetail data={this.state.data} />
+                    <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 10 }}>
+                        {/* {this.state.dataPost.map(display =>
+                            <DisplayCard key={display.id} idPost={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
+                                gambar={display.image} gambarProfile={display.owner.picture} tanggal={display.publishDate} like={display.likes}
+                                body={display.text} link={display.link} tag={display.tags} />)} */}
+                        {this.state.dataPost.map(display =>
+                            <DisplayCard key={display.id} item={display} />)}
+                    </Grid>
+                </div>
+            ) : (
+                <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 50 }}>
+                    <CircularProgress />
                 </Grid>
-            </div>
+            )
         );
     }
 }

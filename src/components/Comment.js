@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import APP_ID from "./key"
 import Moment from 'moment';
-import { Button, Link } from "@material-ui/core";
+import { Button, Link, CircularProgress, Grid } from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
 import profile_comment from "./images/account.png"
 
@@ -42,13 +42,21 @@ export default class Comments extends Component {
 
     render() {
         return (
-            <div style={{ marginLeft: 0, paddingRight: 0 }}>
-                {this.state.data.map(display =>
-                    <Display key={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
-                        komentar={display.message} tanggal={display.publishDate}
-                        gambar={display.owner.picture} />)}
-                <Post />
-            </div>
+            this.state.data != '' ? (
+                <div style={{ marginLeft: 0, paddingRight: 0 }}>
+                    {/* {this.state.data.map(display =>
+                        <Display key={display.id} idUser={display.owner.id} nama={display.owner.firstName + " " + display.owner.lastName}
+                            komentar={display.message} tanggal={display.publishDate}
+                            gambar={display.owner.picture} />)} */}
+                    {this.state.data.map(display =>
+                        <Display key={display.id} item={display} />)}
+                    <Post />
+                </div>
+            ) : (
+                <Grid container direction="row" justify="center" alignItems="center" style={{ marginTop: 10, marginBottom: 10 }}>
+                    <CircularProgress />
+                </Grid>
+            )
         );
     }
 }
@@ -72,16 +80,17 @@ function Post() {
 }
 function Display(props) {
     const classes = useStyles();
-    const tanggal = Moment(props.tanggal).format('LLL')
+    const tanggal = Moment(props.item.publishDate).format('LLL')
+    const nama = props.item.owner.firstName + " " + props.item.owner.lastName
     return (
         <div style={{ padding: 20 }}>
             <div style={{ display: "flex" }}>
-                <Link href={`/userprofile/${props.idUser}`}>
-                    <img className={classes.image} src={props.gambar} />
+                <Link href={`/userprofile/${props.item.owner.id}`}>
+                    <img className={classes.image} src={props.item.owner.picture} />
                 </Link>
-                <p style={{ marginLeft: 10 }}><strong>{props.nama}</strong></p>
+                <p style={{ marginLeft: 10 }}><strong>{nama}</strong></p>
             </div>
-            <p style={{ marginLeft: 70, marginTop: -30, borderBottom: "2px solid #5d5d5d" }}>{props.komentar}</p>
+            <p style={{ marginLeft: 70, marginTop: -30, borderBottom: "2px solid #5d5d5d" }}>{props.item.message}</p>
             <span style={{ fontSize: 12, float: "right", marginTop: -15 }}>{tanggal}</span>
         </div>
     )
