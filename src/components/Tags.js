@@ -30,8 +30,9 @@ export default class Search extends Component {
     };
 
     componentDidMount() {
-        this.handleSearch(this.props.id);
-        this.setState({ value: this.props.id })
+        let id = window.location.pathname.replace("/search/tag/", "")
+        this.handleSearch(id);
+        this.setState({ value: id })
     }
 
     render() {
