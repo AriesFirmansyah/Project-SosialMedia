@@ -78,8 +78,9 @@ class UserProfile extends Component {
     };
 
     componentDidMount() {
-        this.handleData(this.props.id);
-        this.handleDataPost(this.props.id);
+        let id = window.location.pathname.replace("/userprofile/", "")
+        this.handleData(id);
+        this.handleDataPost(id);
     }
 
     render() {

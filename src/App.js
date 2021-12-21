@@ -1,15 +1,12 @@
 import "./App.css"
 import React from "react"
-import { Router } from "@reach/router"
+// import { Router } from "@reach/router"
+import { BrowserRouter as Router, Route, Routes, Link, useParams } from 'react-router-dom'
+
 import $ from "jquery"
 import Search from "./components/Search"
-import { Container, Grid, Switch, FormControlLabel, Link } from "@material-ui/core"
-import BottomNavigation from "@material-ui/core/BottomNavigation"
-import BottomNavigationAction from "@material-ui/core/BottomNavigationAction";
-import ViewListIcon from "@material-ui/icons/ViewList"
-import HomeIcon from "@material-ui/icons/Home"
-import AccountCircleIcon from "@material-ui/icons/AccountCircle"
-import SearchIcon from "@material-ui/icons/Search"
+import { Container, Grid, Switch, FormControlLabel } from "@material-ui/core"
+
 import Gambar1 from "./components/images/logo.png"
 
 /* PAGES */
@@ -19,57 +16,58 @@ import AboutUs from "./components/AboutUs"
 import UserProfile from "./components/UserProfile"
 import Tags from "./components/Tags"
 import SearchByName from "./components/SearchByName"
+import Navbar from "./components/Navbar"
 
 
 function App() {
+  let { id } = useParams();
   return (
-    <div id="cont" className="cont">
-      <Container id="" maxWidth="md">
-        <Grid container spacing={3}>
-          <Grid className="textRight" item xs={12}>
-            <div style={{ float: "left", marginTop: "-12px" }}>
-              <h2><img className="logo" src={Gambar1} />Sausmed</h2>
-            </div>
-            <p className="inline" style={{ marginRight: 12, fontSize: 12, fontWeight: "bold" }}>
-              Light
-            </p>
-            <FormControlLabel
-              onChange={switchDisplay}
-              control={<Switch color="primary" />}
-            />
-            <p className="inline" style={{ marginLeft: -17, fontSize: 12, fontWeight: "bold" }}>
-              Dark
-            </p>
+    <Router>
+      <div id="cont" className="cont">
+        <Container id="" maxWidth="md">
+          <Grid container spacing={3}>
+            <Grid className="textRight" item xs={12}>
+              <div style={{ float: "left", marginTop: "-12px" }}>
+                <h2><img className="logo" src={Gambar1} />Sausmed</h2>
+              </div>
+              <p className="inline" style={{ marginRight: 12, fontSize: 12, fontWeight: "bold" }}>
+                Light
+              </p>
+              <FormControlLabel
+                onChange={switchDisplay}
+                control={<Switch color="primary" />}
+              />
+              <p className="inline" style={{ marginLeft: -17, fontSize: 12, fontWeight: "bold" }}>
+                Dark
+              </p>
+            </Grid>
+            <Navbar/>
           </Grid>
-          <Grid item xs={12} style={{ marginTop: 4, textAlign: "center", float: "center" }}>
-            <BottomNavigation style={{ width: "auto", textAlign: "center", borderRadius: 25, backgroundColor: "#d4d4d4" }} >
-              <Link href="/beranda">
-                <BottomNavigationAction className="navigasi" label="Beranda" value="beranda" icon={<HomeIcon />} />
-              </Link>
-              <Link href="/userlist">
-                <BottomNavigationAction className="navigasi" label="User List" value="userlist" icon={<ViewListIcon />} />
-              </Link>
-              <Link href="/search">
-                <BottomNavigationAction className="navigasi" label="Search" value="search" icon={<SearchIcon />} />
-              </Link>
-              <Link href="/aboutus">
-                <BottomNavigationAction className="navigasi" label="About Us" value="aboutus" icon={<AccountCircleIcon />} />
-              </Link>
-            </BottomNavigation>
-          </Grid>
-        </Grid>
-        <Router>
-          <Beranda path="/"></Beranda>
-          <Beranda path="/beranda"></Beranda>
-          <UserList path="/userlist"></UserList>
-          <AboutUs path="/aboutus/"></AboutUs>
-          <Search path="/search"></Search>
-          <SearchByName path="/search/byname"></SearchByName>
-          <Tags path="/search/tag/:id"></Tags>
-          <UserProfile path="/userprofile/:id"></UserProfile>
-        </Router>
-      </Container>
-    </div>
+
+          <Routes>
+            <Route path="/" element={<Beranda/>}> </Route>
+            <Route path="/beranda" element={<Beranda/>}> </Route>
+            <Route path="/userlist" element={<UserList/>}>  </Route>
+            <Route path="/aboutus" element={<AboutUs/>}> </Route>
+            <Route path="/search" element={<Search/>}> </Route>
+            <Route path="/search/byname" element={<SearchByName/>}> </Route>
+            <Route path="/search/tag/:id" element={<Tags/>}></Route>
+            <Route path="/userprofile/:id" element={<UserProfile/>}> </Route>
+          </Routes>
+
+          {/* <Router>
+            <Beranda path="/"></Beranda>
+            <Beranda path="/beranda"></Beranda>
+            <UserList path="/userlist"></UserList>
+            <AboutUs path="/aboutus/"></AboutUs>
+            <Search path="/search"></Search>
+            <SearchByName path="/search/byname"></SearchByName>
+            <Tags path="/search/tag/:id"></Tags>
+            <UserProfile path="/userprofile/:id"></UserProfile>
+          </Router> */}
+        </Container>
+      </div>
+    </Router>
   );
 }
 
